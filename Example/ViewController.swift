@@ -22,6 +22,13 @@ import UIKit
 import GTActivityIndicatorView
 
 class ViewController: UITableViewController {
+    let activityIndicator: ActivityIndicatorView = {
+        let indicator = ActivityIndicatorView()
+        indicator.backgroundColor = UIColor.orangeColor()
+        indicator.color = UIColor.blackColor()
+        return indicator
+    }()
+
     private lazy var startButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
             title: "Start",
@@ -46,16 +53,17 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.addSubview(self.activityIndicator)
         self.navigationItem.leftBarButtonItem = self.stopButton
         self.navigationItem.rightBarButtonItem = self.startButton
     }
 
     @objc private func didTapStartButton() {
-
+        self.activityIndicator.startAnimating()
     }
 
     @objc private func didTapStopButton() {
-
+        self.activityIndicator.stopAnimating()
     }
 
 }

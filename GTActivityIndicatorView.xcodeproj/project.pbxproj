@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		45504D5C1C356858004B8C9B /* GTActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 45504D5A1C356858004B8C9B /* GTActivityIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45504D6E1C356F76004B8C9B /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45504D6D1C356F76004B8C9B /* ActivityIndicatorView.swift */; };
+		45504D711C357AC5004B8C9B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45504D701C357AC5004B8C9B /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		45504D5A1C356858004B8C9B /* GTActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTActivityIndicatorView.h; sourceTree = "<group>"; };
 		45504D5B1C356858004B8C9B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45504D6D1C356F76004B8C9B /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		45504D701C357AC5004B8C9B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		4572C17A1C315A8A007FFCAD /* GTActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -23,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45504D711C357AC5004B8C9B /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,7 @@
 		4572C1701C315A8A007FFCAD = {
 			isa = PBXGroup;
 			children = (
+				45504D701C357AC5004B8C9B /* SnapKit.framework */,
 				45504D591C356858004B8C9B /* Source */,
 				4572C17B1C315A8A007FFCAD /* Products */,
 			);
@@ -238,6 +242,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -258,6 +266,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
