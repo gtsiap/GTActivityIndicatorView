@@ -34,7 +34,7 @@ class ViewController: UITableViewController {
             title: "Start",
             style: .Done,
             target: self,
-            action: Selector("didTapStartButton")
+            action: #selector(didTapStartButton)
         )
         return button
     }()
@@ -44,7 +44,7 @@ class ViewController: UITableViewController {
             title: "Stop",
             style: .Done,
             target: self,
-            action: Selector("didTapStopButton")
+            action: #selector(didTapStopButton)
         )
         return button
     }()
