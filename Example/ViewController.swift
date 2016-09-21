@@ -23,26 +23,30 @@ import GTActivityIndicatorView
 
 class ViewController: UITableViewController {
     let activityIndicator: ActivityIndicatorView = {
-        let indicator = ActivityIndicatorView()
-        indicator.backgroundColor = UIColor.orangeColor()
-        indicator.color = UIColor.blackColor()
+        let config = ActivityIndicatorView.Configuration(
+            textColor: UIColor.black,
+            indicatorColor: UIColor.black,
+            backgroundColor: UIColor.orange
+        )
+
+        let indicator = ActivityIndicatorView(configuration: config)
         return indicator
     }()
 
     private lazy var startButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
             title: "Start",
-            style: .Done,
+            style: .done,
             target: self,
             action: #selector(didTapStartButton)
         )
         return button
     }()
 
-    private lazy var stopButton: UIBarButtonItem = {
+   private lazy var stopButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
             title: "Stop",
-            style: .Done,
+            style: .done,
             target: self,
             action: #selector(didTapStopButton)
         )

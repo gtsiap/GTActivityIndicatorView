@@ -22,13 +22,40 @@ import SnapKit
 
 public class ActivityIndicatorView: UIView {
 
+    public struct Configuration {
+        let text: String
+        let textColor: UIColor
+        let indicatorColor: UIColor
+        let backgroundColor: UIColor
+        let cornerRadius: CGFloat
+        let alpha: CGFloat
+
+        public init(
+            text: String = "Loading",
+            textColor: UIColor = UIColor.white,
+            indicatorColor: UIColor = UIColor.white,
+            backgroundColor: UIColor = UIColor.black,
+            cornerRadius: CGFloat = 10.0,
+            alpha: CGFloat = 0.9
+        ) {
+            self.text = text
+            self.textColor = textColor
+            self.indicatorColor = indicatorColor
+            self.backgroundColor = backgroundColor
+            self.cornerRadius = cornerRadius
+            self.alpha = alpha
+        }
+    }
+
     // MARK: private vars
     private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
         return activityIndicator
     }()
+
+    private let configuration: Configuration
 
     private let textLabel: UILabel = {
         let label = UILabel()
@@ -36,40 +63,27 @@ public class ActivityIndicatorView: UIView {
         return label
     }()
 
-    // MARK: public vars
-    public var text: String = "Loading.." {
-        didSet {
-            self.textLabel.text = self.text
-        }
-    }
 
-    public var color: UIColor = UIColor.whiteColor() {
-        didSet {
-            self.textLabel.textColor = self.color
-            self.activityIndicator.color = self.color
-        }
-    }
-
-    public init() {
-        super.init(frame: CGRectZero)
+    public init(configuration: Configuration) {
+        self.configuration = configuration
+        super.init(frame: CGRect())
         commonInit()
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("Missing Implementation")
     }
 
     private func commonInit() {
         addSubview(self.activityIndicator)
         addSubview(self.textLabel)
 
-        self.activityIndicator.snp_makeConstraints() { make in
+        self.activityIndicator.snp.makeConstraints() { make in
             make.centerX.equalTo(self)
             make.centerY.equalTo(self).multipliedBy(0.7)
         }
 
-        self.textLabel.snp_makeConstraints() { make in
+        self.textLabel.snp.makeConstraints() { make in
             make.centerX.equalTo(self)
             make.bottom.equalTo(self).multipliedBy(0.8)
         }
@@ -84,18 +98,18 @@ public class ActivityIndicatorView: UIView {
         layoutIfNeeded()
 
         self.layer.zPosition = 1.0
-        self.hidden = false
+        self.isHidden = false
 
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5, animations: {
             self.layoutIfNeeded()
-        }
+        }) 
 
         self.activityIndicator.startAnimating()
     }
 
     public func stopAnimating() {
         self.activityIndicator.stopAnimating()
-        self.hidden = true
+        self.isHidden = true
     }
 
     public override func didMoveToSuperview() {
@@ -103,22 +117,23 @@ public class ActivityIndicatorView: UIView {
             return
         }
 
-        snp_makeConstraints() { make in
+        snp.makeConstraints() { make in
             make.centerX.equalTo(superview)
             make.centerY.equalTo(superview).multipliedBy(0.7)
             make.width.equalTo(superview).multipliedBy(0.4)
-            make.height.equalTo(superview).multipliedBy(0.2).priorityHigh()
-            make.height.equalTo(self.snp_width)
+            make.height.equalTo(superview).multipliedBy(0.2).priority(UILayoutPriorityDefaultHigh)
+            make.height.equalTo(self.snp.width)
         }
     }
 
     private func setupDefaults() {
-        self.textLabel.text = self.text
-        self.textLabel.textColor = UIColor.whiteColor()
+        self.textLabel.text = self.configuration.text
+        self.textLabel.textColor = self.configuration.textColor
 
-        self.alpha = 0.9
-        self.backgroundColor = UIColor.blackColor()
-        self.layer.cornerRadius = 10.0
-        self.hidden = true
+        self.activityIndicator.color = self.configuration.indicatorColor
+        self.alpha = self.configuration.alpha
+        self.backgroundColor = self.configuration.backgroundColor
+        self.layer.cornerRadius = self.configuration.cornerRadius
+        self.isHidden = true
     }
 }
