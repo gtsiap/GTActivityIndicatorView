@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # GTActivityIndicatorView
 A simple indicator view
 
